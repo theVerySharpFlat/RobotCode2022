@@ -14,7 +14,7 @@ TeleopDriveCommand::TeleopDriveCommand(DriveSubsystem &drvSubsys,
 
 // Called when the command is initially scheduled.
 void TeleopDriveCommand::Initialize() {
-  wpi::outs() << "Teleop initialized!" << wpi::endl;
+  wpi::outs() << "Teleop COMMAND initialized!" << wpi::endl;
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -28,9 +28,9 @@ void TeleopDriveCommand::Execute() {
 // Called once the command ends or is interrupted.
 void TeleopDriveCommand::End(bool interrupted) {
   if (!interrupted) {
-    wpi::outs() << "Command exited cleanly!" << wpi::endl;
+    wpi::outs() << "Teleop command exited cleanly!" << wpi::endl;
   } else {
-    wpi::outs() << "Command was interrupted..." << wpi::endl;
+    wpi::outs() << "Teleop command was interrupted..." << wpi::endl;
   }
 }
 

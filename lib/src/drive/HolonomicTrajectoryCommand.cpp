@@ -1,4 +1,5 @@
 #include "rmb/drive/HolonomicTrajectoryCommand.h"
+#include <rmb/io/log.h>
 
 #include <units/time.h>
 
@@ -22,6 +23,7 @@ void HolonomicTrajectoryCommand::Execute() {
   auto targetChassisSpeeds =
       driveController.Calculate(odometry.getPose(), desiredState,
                                 trajectory.States().back().pose.Rotation());
+  wpi::outs() << targetChassisSpeeds.vx << " " << targetChassisSpeeds.vy << wpi::endl;
   drive.driveChassisSpeeds(targetChassisSpeeds);
 }
 

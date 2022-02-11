@@ -5,10 +5,15 @@
 #pragma once
 
 #include <frc2/command/Command.h>
+#include <frc/trajectory/Trajectory.h>
+#include <frc/trajectory/TrajectoryConfig.h>
+#include <frc/trajectory/TrajectoryGenerator.h>
 
 #include "driverstation/JoystickSubsystem.h"
 #include "drivetrain/DriveSubsystem.h"
 #include "drivetrain/TeleopDriveCommand.h"
+
+#include <rmb/io/log.h>
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -22,6 +27,22 @@ public:
   RobotContainer();
 
   TeleopDriveCommand &getTeleopDriveCommand() { return teleopDriveCommand; }
+
+  std::unique_ptr<frc2::Command>
+  getBasicAutoCommand() {
+    wpi::outs() << "Auto COMMAND initialized!" << wpi::endl;
+      // Set up config for trajectory
+    frc::TrajectoryConfig testTrajectoryConfig(0.5_mps, 0.5_mps_sq);
+
+    testTrajectoryConfig.SetKinematics(driveSubsystemConstants::kinematics);
+
+    frc::Trajectory testTrajectory = frc::TrajectoryGenerator::GenerateTrajectory(
+      {frc::Pose2d(), frc::Pose2d(frc::Translation2d(0.0_m, 1_m),
+      frc::Rotation2d())},
+      testTrajectoryConfig);
+    
+    return driveSubsystem.generateTrajectoryCommand(testTrajectory);
+  }
 
 private:
   void ConfigureButtonBindings();

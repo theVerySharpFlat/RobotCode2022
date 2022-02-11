@@ -60,7 +60,7 @@ public:
   bool IsFinished();
 
 private:
-  const frc::Trajectory &trajectory;
+  frc::Trajectory trajectory;
   HolonomicDrive &drive;
   const DriveOdometry &odometry;
   frc::HolonomicDriveController &driveController;

@@ -5,6 +5,7 @@
 #pragma once
 #include "RobotContainer.h"
 #include <frc/TimedRobot.h>
+#include <frc2/command/Command.h>
 
 class Robot : public frc::TimedRobot {
 public:
@@ -20,4 +21,5 @@ public:
 
 private:
   RobotContainer container;
+  std::unique_ptr<frc2::Command> trajectoryCommand;
 };

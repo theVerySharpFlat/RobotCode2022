@@ -30,9 +30,7 @@ void Robot::RobotPeriodic() { frc2::CommandScheduler::GetInstance().Run(); }
  * can use it to reset any subsystem information you want to clear when the
  * robot is disabled.
  */
-void Robot::DisabledInit() {
-  container.getTeleopDriveCommand().Cancel();
-}
+void Robot::DisabledInit() { container.getTeleopDriveCommand().Cancel(); }
 
 void Robot::DisabledPeriodic() {}
 
@@ -41,14 +39,18 @@ void Robot::DisabledPeriodic() {}
  * RobotContainer} class.
  */
 void Robot::AutonomousInit() {
+  wpi::outs() << "Auto initiated!" << wpi::endl;
   container.getTeleopDriveCommand().Cancel();
+  trajectoryCommand = container.getBasicAutoCommand();
+  frc2::CommandScheduler::GetInstance().Schedule(trajectoryCommand.get());
 }
 
 void Robot::AutonomousPeriodic() {}
 
 void Robot::TeleopInit() {
+  wpi::outs() << "Teleop initiated!" << wpi::endl;
   frc2::CommandScheduler::GetInstance().Schedule(
-      &container.getTeleopDriveCommand());
+    &container.getTeleopDriveCommand());
 }
 
 /**
