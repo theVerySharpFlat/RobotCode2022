@@ -34,18 +34,12 @@ class ShooterSubsystem : public frc2::SubsystemBase {
 
   const units::meter_t wheelDiameter;
 
-  rmb::SparkMaxVelocityController<units::radians>::Follower rightShooterMotor {
-    shooterSubsystemConstants::rightShooterMotorID,
-    rev::CANSparkMax::MotorType::kBrushless,
-    false
-  };
-
   rmb::SparkMaxVelocityController<units::radians> leftMainShooterMotor{
     shooterSubsystemConstants::leftShooterMotorID,
     shooterSubsystemConstants::motorPIDConfig,
     shooterSubsystemConstants::motorConversion,
     rmb::noFeedforward<units::radians>,
-    {rightShooterMotor}
+    {}
   };
 
   // Components (e.g. motor controllers and sensors) should generally be

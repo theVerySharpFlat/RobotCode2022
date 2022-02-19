@@ -6,6 +6,14 @@
 #include "RobotContainer.h"
 #include <frc/TimedRobot.h>
 
+#include <units/base.h>
+#include <units/angle.h>
+#include <units/angular_velocity.h>
+#include <units/length.h>
+
+#include <rmb/motorcontrol/sparkmax/SparkMaxVelocityController.h>
+#include <Constants.h>
+
 class Robot : public frc::TimedRobot {
 public:
   void RobotInit() override;
@@ -19,5 +27,16 @@ public:
   void TestPeriodic() override;
 
 private:
-  RobotContainer container;
+  //RobotContainer container;
+
+  rev::CANSparkMax velocityController{
+    41, rev::CANSparkMaxLowLevel::MotorType::kBrushless
+  };
+  rev::CANSparkMax velocityController_two{
+    22, rev::CANSparkMaxLowLevel::MotorType::kBrushless
+  };
+
+  frc::Joystick joystick {
+    0
+  };
 };
