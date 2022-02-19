@@ -30,7 +30,7 @@ private:
   //RobotContainer container;
 
   rev::CANSparkMax velocityController{
-    41, rev::CANSparkMaxLowLevel::MotorType::kBrushless
+    43, rev::CANSparkMaxLowLevel::MotorType::kBrushless
   };
   rev::CANSparkMax velocityController_two{
     22, rev::CANSparkMaxLowLevel::MotorType::kBrushless

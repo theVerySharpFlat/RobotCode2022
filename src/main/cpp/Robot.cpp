@@ -68,12 +68,10 @@ void Robot::TeleopPeriodic() {}
  */
 void Robot::TestPeriodic() {
   if(joystick.GetTrigger()) {
-    wpi::outs() << "trigger pressed!" << wpi::endl;
-    velocityController.Set(0.1*joystick.GetThrottle());
-    // velocityController_two.Set(0.1*joystick.GetThrottle());
+    //wpi::outs() << "trigger pressed!" << wpi::endl;
+    velocityController.Set(1.0);
   } else {
     velocityController.Set(0);
-    velocityController_two.Set(0);
   }
 }
 
